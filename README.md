@@ -29,7 +29,7 @@ open cli in desired directory:
 
 `git clone git@github.com:WiltonHotz/slots_game.git`
 
-`cd slots`
+`cd slots_game`
 
 `npm install`
 
