@@ -1,0 +1,195 @@
+<html>
+<head>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 80%;
+    }
+    tr {
+      height: 50px;
+    }
+    td {
+      text-align: center;
+    }
+    .payline {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .green {
+      color: green;
+    }
+    .orange {
+      color: orange;
+    }
+    .blue {
+      color: blue;
+    }
+    .purple {
+      color: purple;
+    }
+    .red {
+      color: red;
+    }
+    .reelImg {
+      height: 100px;
+      border: 1px solid black;
+      text-align: center;
+    }
+    .pOutput {
+      color: goldenrod;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th style="font-size: 30px; text-align: center;">SLOTS</th>
+          <th></th>
+          <th></th>
+          <th><button id="btnStart">NEW GAME</button></th>
+          <th id="payoutsTotal" class="pOutput" style="font-size: 20px; text-align: right;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="payline purple" width="5%">4</td>
+          <td width="20%"></td>
+          <td width="10%"><b>Balance</b></td>
+          <td width="20%"></td>
+          <td width="10%"><b><div id="balance"></div></b></td>
+          <td width="20%"></td>
+          <td class="payline red" width="5%">5</td>
+          <td width="10%"><div id="payline5" class="pOutput"></div></td>
+        </tr>
+        <tr>
+          <td class="payline orange">2</td>
+          <td><div id="reel1Last" class="reelImg"></div></td>
+          <td></td>
+          <td><div id="reel2Last" class="reelImg"></div></td>
+          <td></td>
+          <td><div id="reel3Last" class="reelImg"></div></td>
+          <td class="payline orange">2</td>
+          <td><div id="payline2" class="pOutput"></div></td>
+        </tr>
+        <tr>
+          <td class="payline green">1</td>
+          <td><div id="reel1row0" class="reelImg"></div></td>
+          <td>------------------</td>
+          <td><div id="reel2row0" class="reelImg"></div></td>
+          <td>------------------</td>
+          <td><div id="reel3row0" class="reelImg"></div></td>
+          <td class="payline green">1</td>
+          <td><div id="payline1" class="pOutput"></div></td>
+        </tr>        
+        <tr>
+          <td class="payline blue">3</td>
+          <td><div id="reel1First" class="reelImg"></div></td>
+          <td></td>
+          <td><div id="reel2First" class="reelImg"></div></td>
+          <td></td>
+          <td><div id="reel3First" class="reelImg"></div></td>
+          <td class="payline blue">3</td>
+          <td><div id="payline3" class="pOutput"></div></td>
+        </tr> 
+        <tr>
+          <td class="payline red">5</td>
+          <td><button id="btnSpin1">1 line</button></td>
+          <td></td>
+          <td><button id="btnSpin3">3 lines</button></td>
+          <td></td>
+          <td><button id="btnSpin5">5 lines</button></td>
+          <td class="payline purple">4</td>
+          <td><div id="payline4" class="pOutput"></div></td>
+        </tr>       
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><b><div id="error" style="color: red;"></div></b></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>      
+      </tbody>
+    </table>
+    <script>
+
+    function printData(data) {
+      document.getElementById('balance').innerText = data['balance'];
+      document.getElementById('payoutsTotal').innerText = data['sum'] > 0 ? `+${data['sum']}` : '';
+      document.getElementById('payline1').innerText = data['payline1'] > 0 ? `+${data['payline1']}` : '';
+      document.getElementById('payline2').innerText = data['payline2'] > 0 ? `+${data['payline2']}` : '';
+      document.getElementById('payline3').innerText = data['payline3'] > 0 ? `+${data['payline3']}` : '';
+      document.getElementById('payline4').innerText = data['payline4'] > 0 ? `+${data['payline4']}` : '';
+      document.getElementById('payline5').innerText = data['payline5'] > 0 ? `+${data['payline5']}` : '';
+      document.getElementById('reel1Last').innerText = data['reel1'][data['reel1Length']-1];
+      document.getElementById('reel1row0').innerText = data['reel1'][0];
+      document.getElementById('reel1First').innerText = data['reel1'][1];
+      document.getElementById('reel2Last').innerText = data['reel2'][data['reel2Length']-1];
+      document.getElementById('reel2row0').innerText = data['reel2'][0];
+      document.getElementById('reel2First').innerText = data['reel2'][1];
+      document.getElementById('reel3Last').innerText = data['reel3'][data['reel3Length']-1];
+      document.getElementById('reel3row0').innerText = data['reel3'][0];
+      document.getElementById('reel3First').innerText = data['reel3'][1];
+      document.getElementById('error').innerText = data['error'];
+    }
+
+    var btnStart = document.getElementById('btnStart');
+        btnStart.addEventListener("click", function() {
+          btnSpin1.disabled = false;
+          btnSpin3.disabled = false;
+          btnSpin5.disabled = false;
+
+          var timestamp = new Date().getTime();
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open( "POST", "/start?t="+timestamp, true); // false for synchronous request
+          xmlHttp.send();
+
+          xmlHttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            const startData = JSON.parse(xmlHttp.responseText);
+            printData(startData)
+          }
+        };
+      });
+
+        var btnSpin1 = document.getElementById('btnSpin1');
+        btnSpin1.disabled = true;
+        btnSpin1.addEventListener("click",() => btnSpinEventListeners(1));
+
+        var btnSpin3 = document.getElementById('btnSpin3');
+        btnSpin3.disabled = true;
+        btnSpin3.addEventListener("click",() => btnSpinEventListeners(3));
+
+        var btnSpin5 = document.getElementById('btnSpin5');
+        btnSpin5.disabled = true;
+        btnSpin5.addEventListener("click",() => btnSpinEventListeners(5));
+
+
+      function btnSpinEventListeners(bet) {
+            var timestamp = new Date().getTime();
+            var xmlHttp = new XMLHttpRequest();
+
+            xmlHttp.open( "POST", "/spin?t="+timestamp, true ); // false for synchronous request
+            xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            var balance = parseFloat(document.getElementById('balance').innerText);
+            // var bet = parseInt(document.getElementById('bet').value);
+            var toSlotsBrain = { 'balance' : balance, 'bet': bet};
+            xmlHttp.send(JSON.stringify(toSlotsBrain));
+
+            xmlHttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+              const newData = JSON.parse(xmlHttp.responseText);
+              printData(newData)
+          }
+        };          
+      }
+    </script>
+</body>
+</html>
