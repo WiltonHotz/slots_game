@@ -7,7 +7,7 @@
 ## 11:30
 
 #### Initial Project Board Completed.
-![Image of TrelloBoard](https://github.com/WiltonHotz/slots/blob/master/assets/img/Initial%20Project%20Board.PNG)
+![Image of TrelloBoard](https://github.com/WiltonHotz/slots_game/blob/master/assets/img/Initial%20Project%20Board.PNG)
 
 # 2020-04-09
 
@@ -22,19 +22,19 @@
 ## 16:00
 
 #### Separated logic into Rules, Data and Brain. Spinning each reel server-side now works.
-![Image of CodeTesting](https://github.com/WiltonHotz/slots/blob/master/assets/img/CodeTesting.PNG)
+![Image of CodeTesting](https://github.com/WiltonHotz/slots_game/blob/master/assets/img/CodeTesting.PNG)
 
 # 2020-04-10
 
 ## 12:00
 
 #### "New Game" now renders table with "wheels" and their symbols at starting position as well as reset balance and betsize.
-![Image of NewGame](https://github.com/WiltonHotz/slots/blob/master/assets/img/NewGame.PNG)
+![Image of NewGame](https://github.com/WiltonHotz/slots_game/blob/master/assets/img/NewGame.PNG)
 
 ## 13:30
 
 #### Spinning reels now work correctly
-![Image of SpinningReels](https://github.com/WiltonHotz/slots/blob/master/assets/img/smallSpin.gif)
+![Image of SpinningReels](https://github.com/WiltonHotz/slots_game/blob/master/assets/img/smallSpin.gif)
 
 # 2020-04-12
 
@@ -45,12 +45,12 @@
 #### Working: Flexibility / Scalability. Can have different betsizes, more/less symbols, paylines, reels, number of reels, multipliers and maxrotations on reels.
 
 #### Not Working: Error Handling. Need to notify player when betsize is too large or amount is zero.
-![Image of WorkingWithoutErrorHandling](https://github.com/WiltonHotz/slots/blob/master/assets/img/working%20slots%20without%20error%20handling.JPG)
+![Image of WorkingWithoutErrorHandling](https://github.com/WiltonHotz/slots_game/blob/master/assets/img/working%20slots%20without%20error%20handling.JPG)
 
 ## 11:00
 
 #### Bet > Balance error handling implemented.
-![Image of InsufficientFunds](https://github.com/WiltonHotz/slots/blob/master/assets/img/insufficient_funds.JPG)
+![Image of InsufficientFunds](https://github.com/WiltonHotz/slots_game/blob/master/assets/img/insufficient_funds.JPG)
 
 ## 12:30
 
@@ -95,12 +95,12 @@
 ## 10:00
 
 #### 10:00 - Having studied the rules and mechanics of slots, as well as other online slots creators code and some tutorials, I've concluded that there's too little time left for expanding the client-side. However - I learned that the multipliers multiply paylines and not bets as assumed. In retrospect the first day of the project should have been taking this step and not assuming their function. I've concluded the final step ought to be to include paylines * multipliers-functionality to make the house not lose money on the slots game.I will try to draw inspiration from the following design:
-![Image of Inspiration](https://github.com/WiltonHotz/slots/blob/master/assets/img/Inspiration.JPG)
+![Image of Inspiration](https://github.com/WiltonHotz/slots_game/blob/master/assets/img/Inspiration.JPG)
 
 ## 12:00
 
 #### 12:00 - New structure implemented.
-![Image of NewStructure](https://github.com/WiltonHotz/slots/blob/master/assets/img/newStructure.JPG)
+![Image of NewStructure](https://github.com/WiltonHotz/slots_game/blob/master/assets/img/newStructure.JPG)
 
 ## 13:00
 
@@ -120,4 +120,5 @@
 ##### Git commit history
 - [x] Implemented at 14:30
 ###### You might want to merge commits. 10 times updating README looks so-so. You could probably have 3-6 commits with headers and paragraphs for this project.
+- [x] Implemented at 15:30
 
