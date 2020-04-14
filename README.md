@@ -67,4 +67,4 @@ Step 3: Repeat Step 2
 
 ## Console Explanation
 
-![Image of ConsoleExplanation](https://github.com/WiltonHotz/slots/blob/master/assets/img/full_log.JPG)
+![Image of ConsoleExplanation](https://github.com/WiltonHotz/slots_game/blob/master/assets/img/full_log.JPG)
